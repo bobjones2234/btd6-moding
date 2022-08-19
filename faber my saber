@@ -1,0 +1,159 @@
+using cool cat
+
+using Assets.Scripts.Unity.UI_New.InGame;
+
+using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Unity;
+using Assets.Scripts.Utils;
+using System;
+using System.Text.RegularExpressions;
+using System.IO;
+using Assets.Main.Scenes;
+using UnityEngine;
+using System.Linq;
+using Assets.Scripts.Models.Towers.Behaviors.Attack;
+using Assets.Scripts.Models.Towers.Behaviors.Attack.Behaviors;
+using BTD_Mod_Helper.Extensions;
+using Assets.Scripts.Models.Towers.Behaviors;
+using Assets.Scripts.Models.Bloons.Behaviors;
+using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
+using System.Collections.Generic;
+using Assets.Scripts.Models;
+using Assets.Scripts.Models.Towers.Projectiles;
+using Assets.Scripts.Models.Towers.Behaviors.Emissions;
+using Assets.Scripts.Models.Towers.Behaviors.Abilities;
+using Assets.Scripts.Simulation.Track;
+using static Assets.Scripts.Models.Towers.TargetType;
+using Assets.Scripts.Simulation;
+using Assets.Scripts.Models.Towers.Pets;
+using Assets.Scripts.Unity.Bridge;
+using System.Windows;
+using BTD_Mod_Helper.Api.Towers;
+using BTD_Mod_Helper.Api.Display;
+using Assets.Scripts.Unity.Display;
+
+namespace minicustomtowersv2
+{
+    public class Faber My Saber]
+    {
+        public class Faber My Saber : ModTower
+        {
+            public override string BaseTower => "";
+            public override string Name => "Faber My Saber";
+            public override int Cost => 700;
+            public override string DisplayName => "Faber My Saber";
+            public override string Description => "Generates $20 after each round.";
+            public override bool Use2DModel => true;
+            public override string TowerSet => "Support";
+            public override int TopPathUpgrades => 5;
+            public override int MiddlePathUpgrades => 5;
+            public override int BottomPathUpgrades => 5;
+            public override float PixelsPerUnit => 5f;
+            public override void ModifyBaseTowerModel(TowerModel towerModel)
+            {
+           
+                towerModel.AddBehavior(new PerRoundCashBonusTowerModel("retrobanana000", 80f, 0.0f, 1.0f, "80178409df24b3b479342ed73cffb63d", false));
+            }
+            public override string Icon => " Faber My Saber";
+            public override string Portrait => "Faber My Saber";
+            public override string Get2DTexture(int[] tiers)
+            {
+                if(tiers[3] == 1)
+                {
+                    return "Need Some Money _Display";
+                }
+                if (tiers[1] == 2)
+                {
+                    return "Give the money _Display";
+                }
+                if (tiers[1] == 3)
+                {
+                    return "the big sale_Display";
+                }
+                if (tiers[1] == 4)
+                {
+                    return "Cross path farm _Display";
+                }
+                return "Faber My Saber";
+            }
+        }
+        
+        public class MoreBananas : ModUpgrade<RetroBananaFarm>
+        {
+            public override string Name => "Need Some Money ";
+            public override string DisplayName => "Need Some Money ";
+            public override int Cost => 600;
+            public override string Description => "Generates $400 per round";
+            public override int Path => Bottom 
+            public override int Tier => 1;
+            public override string Icon => "Need Some Money_Icon";
+            public override string Portrait => "Need Some Money_Icon";
+            public override void ApplyUpgrade(TowerModel towerModel)
+            {
+                towerModel.GetBehavior<PerRoundCashBonusTowerModel>().cashPerRound = 400f;
+            }
+        }
+        
+        public class BananaPlantation : ModUpgrade<RetroBananaFarm>
+        {
+            public override string Name => "Give the money ";
+            public override string DisplayName => "Give the money";
+            public override int Cost => 1600;
+            public override string Description => "Generates $800 per round";
+            public override int Path => Bottom;
+            public override int Tier => 2;
+            public override string Icon => "Give the money_Icon";
+            public override string Portrait => "Give the money_Icon";
+            public override void ApplyUpgrade(TowerModel towerModel)
+            {
+                towerModel.GetBehavior<PerRoundCashBonusTowerModel>().cashPerRound = 800f;
+            }
+        }
+    
+        public class BananaRepublic : ModUpgrade<Faber my saber >
+        {
+            public override string Name => "The big sale";
+            public override string DisplayName => "The big sale";
+            public override int Cost => 2500;
+            public override string Description => "Generates 1250 per round";
+            public override int Path => MIDDLE;
+            public override int Tier => 3;
+            public override string Icon => "The big sale_Icon";
+            public override string Portrait => "The big sale_Icon";
+            public override void ApplyUpgrade(TowerModel towerModel)
+            {
+                towerModel.GetBehavior<PerRoundCashBonusTowerModel>().cashPerRound = 1250f;
+            }
+        }
+        
+        public class BananaResearchFacility : ModUpgrade<Faver my saber >
+        {
+            public override string Name => "Cross path farm ";
+            public override string DisplayName => "Cross path farm ";
+            public override int Cost => 6000;
+            public override string Description => "Generates $3000 per round";
+            public override int Path => MIDDLE;
+            public override int Tier => 4;
+            public override string Icon => "BananaResearchFacility_Icon";
+            public override string Portrait => "BananaResearchFacility_Icon";
+            public override void ApplyUpgrade(TowerModel towerModel)
+            {
+                towerModel.GetBehavior<PerRoundCashBonusTowerModel>().cashPerRound = 3000f;
+            }
+        }
+    }
+       public override string Name => "Cross path farm ";
+            public override string DisplayName => "One with the farm  ";
+            public override int Cost => 70000;
+            public override string Description => "Generates $13000 per round";
+            public override int Path => MIDDLE;
+            public override int Tier => 4;
+            public override string Icon => "BananaResearchFacility_Icon";
+            public override string Portrait => "BananaResearchFacility_Icon";
+            public override void ApplyUpgrade(TowerModel towerModel)
+            {
+                towerModel.GetBehavior<PerRoundCashBonusTowerModel>().cashPerRound = 13000f;
+            }
+        }
+    }
+}
